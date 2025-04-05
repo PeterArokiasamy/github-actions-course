@@ -1,6 +1,6 @@
 name: Deploy Project
-#Manual Trigger
-on: [push, workflow_dispatch]
+#Manual Trigger [push, workflow_dispatch]
+on: workflow_dispatch
 jobs:
   test:
     runs-on: ubuntu-latest #Node js is already installed
