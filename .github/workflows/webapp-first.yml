@@ -1,0 +1,17 @@
+name: WebApp Workflow
+on: push
+jobs:
+  test:
+    runs-on: ubuntu-latest #Node js is already installed
+    steps: 
+      - name: Get code
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+        uses: actions/checkout@v4
+      - name: Install Node JS
+        uses: action/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
