@@ -1,5 +1,5 @@
 name: Deploy Project
-#Manual Trigger [push, workflow_dispatch]
+#Manual Trigger [push belongs to , workflow_dispatch]
 on: [push, workflow_dispatch]
 jobs:
   test:
