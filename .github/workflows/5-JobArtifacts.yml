@@ -25,6 +25,15 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist-files #Name of artifacts
+          path: dist #which foler/file to find in project
+          # Multiple folders/files
+          # path: |
+          #   dist
+          #   package.json
   deploy:
     needs: build
     runs-on: ubuntu-latest
