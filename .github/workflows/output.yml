@@ -4,5 +4,5 @@ jobs:
   info:
     runs-on: ubuntu-latest
     steps:
-      - name: Output GitHub context # Object or collection of data with some general information about Github workflow and event trigger
+      - name: Output GitHub context # Object or collection of meta-data with some general information about Github workflow and event trigger
         run: echo "${{ toJSON(github) }}"
