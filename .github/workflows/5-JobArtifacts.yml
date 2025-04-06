@@ -18,6 +18,8 @@ jobs:
   build:
     needs: test
     runs-on: ubuntu-latest
+    outputs:
+      script-file: ${{ steps.publish.outputs.script-file }} 
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -25,6 +27,10 @@ jobs:
         run: npm ci
       - name: Build website
         run: npm run build
+        #Output the JS file name and make it available in our jobs. add output below runs-on command.
+      - name: Publish JS filename
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'script-file={}' >> $GITHUB_OUTPUT ';' #GITHUB_OUTPUT special file created by GitHub as Env variables
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -44,7 +50,7 @@ jobs:
           name: dist-files #unzip will be automatic
       - name: Output contents
         run: ls #output contents of the dist folder
-      - name: Output filename
+      - name: Output filename #Job Outputs are simple values, re-using a value in different jobs.
         run: echo "${{ needs.build.outputs.script-file }}" #
       - name: Deploy
         run: echo "Deploying..."
