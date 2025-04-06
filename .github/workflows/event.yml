@@ -3,7 +3,20 @@ on:
   pull_request:
     types:
       - opened #When pull request is opened
+    branches:
+      - main # main
+      - 'dev-*' # dev-new dev-this-is-new
+      - 'feat/**' # feat/new feat/new/button
   workflow_dispatch: #Still required, just empty
+  push:
+    branches:
+      - main # main
+      - 'dev-*' # dev-new dev-this-is-new
+      - 'feat/**' # feat/new feat/new/button
+      # developer-1 will not trigger workflow
+	  # we can also ignore branches
+    paths-ignore: #If you add only path, then it will trigger only when a change is applied
+      - '.github/workflows/*'
 jobs:
   deploy:
     runs-on: ubuntu-latest
