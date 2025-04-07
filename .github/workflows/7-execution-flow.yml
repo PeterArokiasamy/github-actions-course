@@ -39,7 +39,6 @@ jobs:
         id: run-tests # Assigning a reference and can use data of this step
         run: npm run test
       - name: Upload test report
-        if: failure() && steps.run-tests.outcome == 'failure' #Steps Context used to check
         uses: actions/upload-artifact@v4
         with:
           name: test-report
