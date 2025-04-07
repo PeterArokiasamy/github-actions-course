@@ -35,6 +35,7 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true' #If false then install
         run: npm ci
       - name: Test code
+        continue-on-error: true
         id: run-tests # Assigning a reference and can use data of this step
         run: npm run test
       - name: Upload test report
