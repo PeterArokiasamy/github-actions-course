@@ -20,15 +20,12 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+        #Remove existing code for Cache & Install dependencies
+      - name: Load & cache dependencies
+        #Can use Github repo name, if we use from repo. For example peterarokiasamy/my-action.
+        uses: ./.github/actions/cached-deps #No need to provide yml as it is default searched
+      - name: Lint code
+        run: npm run lint
       - name: Test code
         id: run-tests
         run: npm run test
@@ -44,15 +41,10 @@ jobs:
     steps:
       - name: Get code
         uses: actions/checkout@v3
-      - name: Cache dependencies
-        id: cache
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
-      - name: Install dependencies
-        if: steps.cache.outputs.cache-hit != 'true'
-        run: npm ci
+        #Remove existing code for Cache & Install dependencies
+      - name: Load & cache dependencies
+        #Can use Github repo name, if we use from repo. For example peterarokiasamy/my-action.
+        uses: ./.github/actions/cached-deps #No need to provide yml as it is default searched
       - name: Build website
         run: npm run build
       - name: Upload artifacts
