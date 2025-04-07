@@ -13,6 +13,8 @@ jobs:
       - name: Load & cache dependencies
         #Can use Github repo name, if we use from repo. For example peterarokiasamy/my-action.
         uses: ./.github/actions/cached-deps #No need to provide yml as it is default searched
+        with:
+          caching: 'false' #pass it to action.yml to supress caching in this Lint Job.
       - name: Lint code
         run: npm run lint
   test:
