@@ -11,10 +11,13 @@ jobs:
         uses: actions/checkout@v3
         #Remove existing code for Cache & Install dependencies
       - name: Load & cache dependencies
+        id: cache-deps
         #Can use Github repo name, if we use from repo. For example peterarokiasamy/my-action.
         uses: ./.github/actions/cached-deps #No need to provide yml as it is default searched
         with:
           caching: 'false' #pass it to action.yml to supress caching in this Lint Job.
+      - name: Output information
+        run: echo "Cache used? ${{ steps.cache-deps.output.used-cache }}"
       - name: Lint code
         run: npm run lint
   test:
