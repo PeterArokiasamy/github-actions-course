@@ -90,7 +90,7 @@ jobs:
           #AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           #AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         with:
-          bucket: github-custom-action-arokia
+          bucket: github-security-hosting-arokia #Name of the bucket
           dist-folder: ./dist
           bucket-region: ap-southeast-1
       - name: Output information
